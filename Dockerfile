@@ -1,12 +1,10 @@
 # osul/handle:latest
-FROM ubuntu:16.04
+FROM openjdk:8-jdk-alpine
 MAINTAINER Corey Hinshaw <hinshaw.25@osu.edu>
 
 ENV HSJ_VERSION 8.1.3
 
-RUN apt-get update \
-  && apt-get install -y curl openjdk-8-jdk-headless \
-  && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache curl tar sed
 
 # Install Handle System server
 RUN curl -fSL https://www.handle.net/hnr-source/hsj-$HSJ_VERSION.tar.gz -o hsj.tar.gz \
